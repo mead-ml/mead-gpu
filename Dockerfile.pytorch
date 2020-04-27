@@ -4,8 +4,6 @@ COPY xpctl /usr/mead/xpctl
 COPY mead-baseline /usr/mead/mead-baseline
 
 WORKDIR /usr/mead
-ADD XPCTL_VERSION .
-ADD VERSION .
 
 RUN cd xpctl/ && pip install -e .
 RUN cd mead-baseline/layers && pip install -e .
