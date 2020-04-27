@@ -1,0 +1,40 @@
+FROM meadml/cuda10.0-cudnn7-devel-ubuntu16.04-python3.6
+
+COPY xpctl /usr/mead/xpctl
+COPY mead-baseline /usr/mead/mead-baseline
+
+WORKDIR /usr/mead
+ADD XPCTL_VERSION .
+ADD VERSION .
+
+RUN cd xpctl/ && pip install -e .
+RUN cd mead-baseline/layers && pip install -e .
+RUN cd mead-baseline && pip install -e .[test,yaml]
+
+# Set env variables
+# Set baseline logging vars
+ENV TIMING_LOG_LEVEL=DEBUG
+# Set terminal encodings
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+# Set ENV to tensorflow can find cuda
+ENV PATH=/usr/local/cuda/bin:$PATH
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+# Install baseline
+COPY . /usr/mead
+
+# Install pytorch
+RUN python3.6 -m pip install torch==1.4.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html && \
+    python3.6 -m pip install Cython && \
+    python3.6 -m pip install pytorch_pretrained_bert
+
+# Install fastBPE
+ADD https://github.com/glample/fastBPE/archive/master.tar.gz /usr/mead/fastBPE-master.tar.gz
+RUN tar xzf fastBPE-master.tar.gz && \
+    cd ./fastBPE-master && \
+    g++ -std=c++11 -pthread -O3 fastBPE/main.cc -IfastBPE -o fast && \
+    python3.6 setup.py install
+
+ENTRYPOINT ["mead-train", "--config", "config/conll.json"]
+
