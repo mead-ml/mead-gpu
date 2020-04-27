@@ -1,0 +1,3 @@
+[submodule "mead-baseline"]
+	path = mead-baseline
+	url = git@github.com:dpressel/mead-baseline.git
