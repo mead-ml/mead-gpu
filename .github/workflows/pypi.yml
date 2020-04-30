@@ -16,23 +16,27 @@ jobs:
               python-version: 3.6
         - name: Build Layers Package
           run: |
-              cd layers
+              cd mead-baseline/layers
               python setup.py sdist bdist_wheel
-              cd ..
+              cd ../..
         - name: Publish 8-Mile Package
           if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
           uses: pypa/gh-action-pypi-publish@master
           with:
               user: __token__
               password: ${{ secrets.pypi_password }}
-              packages_dir: layers/dist
+              packages_dir: mead-baseline/layers/dist
         - name: Build Baseline Package
           run: |
+              cd mead-baseline
               python setup.py sdist bdist_wheel
+              cd ..
         - name: Publish Baseline Package
           if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
           uses: pypa/gh-action-pypi-publish@master
           with:
               user: __token__
               password: ${{ secrets.pypi_password }}
+              packages_dir: mead-baseline/dist
+
 
