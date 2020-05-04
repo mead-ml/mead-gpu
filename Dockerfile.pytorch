@@ -1,4 +1,4 @@
-FROM meadml/cuda10.0-cudnn7-devel-ubuntu16.04-python3.6
+FROM meadml/cuda10.1-cudnn7-devel-ubuntu18.04-python3.6
 
 COPY xpctl /usr/mead/xpctl
 COPY mead-baseline /usr/mead/mead-baseline
@@ -23,7 +23,7 @@ ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 COPY . /usr/mead
 
 # Install pytorch
-RUN python3.6 -m pip install torch==1.4.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html && \
+RUN python3.6 -m pip install torch==1.5.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html &&
     python3.6 -m pip install Cython && \
     python3.6 -m pip install pytorch_pretrained_bert
 
