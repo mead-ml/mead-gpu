@@ -7,7 +7,7 @@ WORKDIR /usr/mead
 
 RUN cd xpctl/ && pip install -e .
 RUN cd mead-baseline/layers && pip install -e .
-RUN cd mead-baseline && pip install -e .[test,yaml]
+RUN cd mead-baseline && pip install -e .[tf2,test,yaml]
 
 # Set env variables
 # Set baseline logging vars
