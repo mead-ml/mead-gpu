@@ -1,4 +1,4 @@
-FROM meadml/cuda10.1-cudnn7-devel-ubuntu18.04-python3.6
+FROM tensorflow/tensorflow:1.15.2-gpu-py3
 
 COPY xpctl /usr/mead/xpctl
 COPY mead-baseline /usr/mead/mead-baseline
@@ -21,9 +21,5 @@ ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 # Install baseline
 COPY . /usr/mead
-
-# Install tensorflow
-RUN python3.6 -m pip install tensorflow-gpu==1.15.0 && \
-    python3.6 -m pip install tensorflow-hub==0.6.0
 
 ENTRYPOINT ["mead-train", "--config", "config/sst2.json"]
