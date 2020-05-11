@@ -1,11 +1,9 @@
 FROM meadml/cuda10.1-cudnn7-devel-ubuntu18.04-python3.6
 
-COPY xpctl /usr/mead/xpctl
 COPY mead-baseline /usr/mead/mead-baseline
 
 WORKDIR /usr/mead
 
-RUN cd xpctl/ && pip install -e .
 RUN cd mead-baseline/layers && pip install -e .
 RUN cd mead-baseline && pip install -e .[test,yaml]
 
@@ -25,7 +23,8 @@ COPY . /usr/mead
 # Install pytorch
 RUN python3.6 -m pip install torch==1.5.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html && \
     python3.6 -m pip install Cython && \
-    python3.6 -m pip install pytorch_pretrained_bert
+    python3.6 -m pip install pytorch_pretrained_bert &&
+    python3.6 -m pip install mead-xpctl
 
 # Install fastBPE
 ADD https://github.com/glample/fastBPE/archive/master.tar.gz /usr/mead/fastBPE-master.tar.gz

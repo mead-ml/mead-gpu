@@ -1,11 +1,9 @@
 FROM tensorflow/tensorflow:2.1.0-gpu-py3
 
-COPY xpctl /usr/mead/xpctl
 COPY mead-baseline /usr/mead/mead-baseline
 
 WORKDIR /usr/mead
 
-RUN cd xpctl/ && pip install -e .
 RUN cd mead-baseline/layers && pip install -e .
 RUN cd mead-baseline && pip install -e .[tf2,test,yaml]
 
@@ -24,7 +22,8 @@ COPY . /usr/mead
 
 # Install tensorflow
 RUN python3.6 -m pip install tensorflow && \
-    python3.6 -m pip install tensorflow-hub
+    python3.6 -m pip install tensorflow-hub && \
+    python3.6 -m pip install mead-xpctl
 
 ENTRYPOINT ["mead-train", "--config", "config/sst2.json"]
 
