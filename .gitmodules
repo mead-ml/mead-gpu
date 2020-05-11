@@ -1,6 +1,3 @@
 [submodule "mead-baseline"]
 	path = mead-baseline
 	url = https://github.com/dpressel/mead-baseline.git 
-[submodule "xpctl"]
-	path = xpctl
-	url = https://github.com/mead-ml/xpctl.git
