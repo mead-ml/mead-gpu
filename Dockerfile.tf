@@ -5,9 +5,9 @@ COPY mead-baseline /usr/mead/mead-baseline
 
 WORKDIR /usr/mead
 
-RUN cd xpctl/ && pip install -e .
 RUN cd mead-baseline/layers && pip install -e .
 RUN cd mead-baseline && pip install -e .[test,yaml]
+RUN pip install mead-xpctl
 
 # Set env variables
 # Set baseline logging vars
