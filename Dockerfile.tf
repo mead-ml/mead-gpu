@@ -1,6 +1,5 @@
 FROM tensorflow/tensorflow:1.15.2-gpu-py3
 
-COPY xpctl /usr/mead/xpctl
 COPY mead-baseline /usr/mead/mead-baseline
 
 WORKDIR /usr/mead
