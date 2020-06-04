@@ -23,6 +23,8 @@ COPY . /usr/mead
 # Install tensorflow
 RUN python3.6 -m pip install tensorflow && \
     python3.6 -m pip install tensorflow-hub && \
+    python3.6 -m pip install Cython && \
+    python3.6 -m pip install fastBPE && \
     python3.6 -m pip install mead-xpctl
 
 ENTRYPOINT ["mead-train", "--config", "config/sst2.json"]

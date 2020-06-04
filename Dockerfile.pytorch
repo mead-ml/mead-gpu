@@ -23,14 +23,8 @@ COPY . /usr/mead
 # Install pytorch
 RUN python3.6 -m pip install torch==1.5.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html && \
     python3.6 -m pip install Cython && \
+    python3.6 -m pip install fastBPE && \
     python3.6 -m pip install mead-xpctl
-
-# Install fastBPE
-ADD https://github.com/glample/fastBPE/archive/master.tar.gz /usr/mead/fastBPE-master.tar.gz
-RUN tar xzf fastBPE-master.tar.gz && \
-    cd ./fastBPE-master && \
-    g++ -std=c++11 -pthread -O3 fastBPE/main.cc -IfastBPE -o fast && \
-    python3.6 setup.py install
 
 ENTRYPOINT ["mead-train", "--config", "config/conll.json"]
 
