@@ -1,3 +1,4 @@
+# This is using CUDA 10.0
 FROM tensorflow/tensorflow:1.15.2-gpu-py3
 
 COPY mead-baseline /usr/mead/mead-baseline
