@@ -1,7 +1,5 @@
-ARG CUDA_VERSION=11.1.1
-ARG CUDDN=8
 # For access to GPU
-FROM nvidia/cuda:${CUDA_VERSION}-cudnn${CUDNN}-devel-ubuntu18.04
+FROM nvidia/cuda:11.1.1-cudnn8-devel-ubuntu18.04
 # Install tools
 RUN apt-get update && \
     apt-get install -y g++ make software-properties-common && \
