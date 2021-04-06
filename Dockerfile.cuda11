@@ -1,4 +1,4 @@
-ARG CUDA_VERSION=11.0
+ARG CUDA_VERSION=11.1
 ARG_CUDDN=8
 # For access to GPU
 FROM nvidia/cuda:${CUDA_VERSION}-cudnn${CUDNN}-devel-ubuntu18.04
