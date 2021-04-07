@@ -9,6 +9,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install pip and install tools
-RUN python3.8 install --upgrade pip && \
+RUN python3.8 -m pip install --upgrade pip && \
     python3.8 -m pip install setuptools && \
     python3.8 -m pip install certifi
