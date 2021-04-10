@@ -1,4 +1,4 @@
-FROM meadml/cuda11.1-cudnn8-devel-ubuntu18.04-python3.6
+FROM meadml/cuda11.1-cudnn8-devel-ubuntu18.04-python3.8
 
 COPY mead-baseline /usr/mead/mead-baseline
 
