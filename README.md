@@ -1,10 +1,7 @@
 # mead-gpu
 MEAD/Baseline builds
 
-Gathers `mead` projects and makes docker builds available at:
+Gathers `mead` projects and makes pypi packages
 
-https://hub.docker.com/u/meadml
+We no longer build docker here, this functionality has moved to [mead-baseline](https://github.com/dpressel/mead-baseline)
 
-- [TensorFlow 1.x with CUDA 10](https://hub.docker.com/r/meadml/mead2-gpu)
-- [TensorFlow 2.x with CUDA 10.1](https://hub.docker.com/r/meadml/mead2-tf2-gpu)
-- [PyTorch 1.5 with CUDA 10.1](https://hub.docker.com/r/meadml/mead2-pytorch-gpu)
